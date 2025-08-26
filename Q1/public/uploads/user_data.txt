@@ -1,0 +1,8 @@
+User Registration Data
+
+Username: ABC
+Email: ka12@gmail.com
+Gender: Female
+Hobbies: Reading, Traveling
+Profile Picture: 1756204702455-2.jpg
+Other Pictures: 1756204702476-1.jpg, 1756204702488-3.jpg

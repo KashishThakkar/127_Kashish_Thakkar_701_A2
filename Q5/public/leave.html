@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Leave Application</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h2>Leave Application</h2><br>
+  <form id="leaveForm">
+    Date: <input type="date" id="date"><br><br>
+    Reason: <input type="text" id="reason"><br><br>
+    <button type="submit">Apply Leave</button><br><br>
+  </form>
+
+  <h3>My Leaves</h3>
+  <ul id="leaves"></ul>
+
+  <a href="profile.html">Back to Profile</a> <br><br>
+  <button onclick="logout()">Logout</button>
+
+
+  <script>
+    const token = localStorage.getItem("token");
+    if (!token) window.location = "index.html";
+
+    function loadLeaves() {
+      $.ajax({
+        url: "/api/leaves",
+        headers: { "Authorization": "Bearer " + token }
+      }).done(function(leaves) {
+        $("#leaves").empty();
+        leaves.forEach(l => {
+          $("#leaves").append(`<li>${l.date.substring(0,10)} - ${l.reason} [Granted: ${l.grant}]</li>`);
+        });
+      });
+    }
+
+    $("#leaveForm").submit(function(e) {
+      e.preventDefault();
+      $.ajax({
+        url: "/api/leaves",
+        type: "POST",
+        headers: { "Authorization": "Bearer " + token },
+        data: {
+          date: $("#date").val(),
+          reason: $("#reason").val()
+        }
+      }).done(function() {
+        loadLeaves();
+      });
+    });
+
+    function logout() {
+      localStorage.removeItem("token");
+      window.location = "index.html";
+    }
+
+    loadLeaves();
+  </script>
+</body>
+</html>

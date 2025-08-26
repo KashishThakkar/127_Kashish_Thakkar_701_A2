@@ -1,0 +1,53 @@
+<!-- form.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Q1</title>
+</head>
+<body>
+    <h2>User Registration Form</h2>
+
+    <form action="/" method="POST" enctype="multipart/form-data">
+        <label>Username:</label>
+        <input type="text" name="username" value="<%= formData.username || '' %>">
+        <% if (errors.username) { %><span style="color:red"><%= errors.username.msg %></span><% } %><br><br>
+
+        <label>Password:</label>
+        <input type="password" name="password" value="<%= formData.password || '' %>">
+        <% if (errors.password) { %><span style="color:red"><%= errors.password.msg %></span><% } %><br><br>
+
+        <label>Confirm Password:</label>
+        <input type="password" name="confirm_password" value="<%= formData.confirm_password || '' %>">
+        <% if (errors.confirm_password) { %><span style="color:red"><%= errors.confirm_password.msg %></span><% } %><br><br>
+
+        <label>Email:</label>
+        <input type="email" name="email" value="<%= formData.email || '' %>">
+        <% if (errors.email) { %><span style="color:red"><%= errors.email.msg %></span><% } %><br><br>
+
+        <label>Gender:</label>
+        <input type="radio" name="gender" value="Male" <%= formData.gender === 'Male' ? 'checked' : '' %>> Male
+        <input type="radio" name="gender" value="Female" <%= formData.gender === 'Female' ? 'checked' : '' %>> Female
+        <% if (errors.gender) { %><span style="color:red"><%= errors.gender.msg %></span><% } %><br><br>
+
+        <label>Hobbies:</label>
+        <input type="checkbox" name="hobbies" value="Reading"
+            <%= (formData.hobbies || []).includes('Reading') ? 'checked' : '' %>> Reading
+        <input type="checkbox" name="hobbies" value="Traveling"
+            <%= (formData.hobbies || []).includes('Traveling') ? 'checked' : '' %>> Traveling
+        <input type="checkbox" name="hobbies" value="Sports"
+            <%= (formData.hobbies || []).includes('Sports') ? 'checked' : '' %>> Sports
+            <% if (errors.hobbies) { %><span style="color:red"><%= errors.hobbies.msg %></span><% } %><br><br>
+
+        <label>Profile Picture [single file]:</label>
+        <input type="file" name="profile_pic">
+        <% if (errors.profile_pic) { %><span style="color:red"><%= errors.profile_pic.msg %></span><% } %><br><br>
+
+        <label>Other Pictures [multiple file]:</label>
+        <input type="file" name="other_pics" multiple>
+        <% if (errors.other_pics) { %><span style="color:red"><%= errors.other_pics.msg %></span><% } %><br><br>
+        
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weather Utility</title>
+  <style>
+    body { font-family: Arial, sans-serif; background:#f1f5f9; color:#111; display:flex; justify-content:center; padding:40px; }
+    .app { background:#fff; border-radius:12px; padding:20px; box-shadow:0 4px 12px rgba(0,0,0,0.1); width:350px; }
+    h1 { margin-top:0; }
+    form { display:flex; gap:8px; margin-bottom:16px; }
+    input { flex:1; padding:8px; border:1px solid #ccc; border-radius:6px; }
+    button { padding:8px 12px; border:none; border-radius:6px; background:#2563eb; color:white; cursor:pointer; }
+    button:hover { background:#1d4ed8; }
+    #result { margin-top:16px; padding:12px; background:#f9fafb; border-radius:8px; }
+    #icon { vertical-align: middle; }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <h1>Weather Lookup</h1>
+    <form id="form">
+      <input type="text" id="city" placeholder="Enter city (e.g., London)" required />
+      <button type="submit">Search</button>
+    </form>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById("form");
+    const cityInput = document.getElementById("city");
+    const result = document.getElementById("result");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const city = cityInput.value.trim();
+      if (!city) return;
+
+      result.textContent = "Loading...";
+
+      try {
+        const res = await fetch(`/api/weather?city=${encodeURIComponent(city)}`);
+        const data = await res.json();
+        if (res.ok) {
+          result.innerHTML = `
+            <h2>${data.city}</h2>
+            <p><b>Temp:</b> ${data.temp}°C (feels ${data.feels}°C)</p>
+          `;
+        } else {
+          result.textContent = " " + (data.error || "Error fetching weather");
+        }
+      } catch (err) {
+        result.textContent = " " + err.message;
+      }
+    });
+  </script>
+</body>
+</html>
+
+
+<!-- <p><img id="icon" src="https://openweathermap.org/img/wn/${data.icon}@2x.png" alt=""/> ${data.desc}</p> -->

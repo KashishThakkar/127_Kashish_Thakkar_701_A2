@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Employee Login</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h2>Employee Login</h2><br>
+  <form id="loginForm">
+    Email: <input type="text" id="email"><br><br>
+    Password: <input type="password" id="password"><br><br>
+    <button type="submit">Login</button>
+  </form>
+  <p id="msg"></p>
+
+  <script>
+    $("#loginForm").submit(function(e) {
+      e.preventDefault();
+      $.post("/api/auth/login", {
+        email: $("#email").val(),
+        password: $("#password").val()
+      }).done(function(data) {
+        localStorage.setItem("token", data.token);
+        window.location = "profile.html";
+      }).fail(function(err) {
+        $("#msg").text(err.responseJSON.error);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Employee Profile</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h2>Profile</h2>
+  <div id="profile"></div>
+  <button onclick="logout()">Logout</button>
+  <a href="leave.html">Go to Leave Page</a>
+
+  <script>
+    const token = localStorage.getItem("token");
+    if (!token) window.location = "index.html";
+
+    $.ajax({
+      url: "/api/me",
+      headers: { "Authorization": "Bearer " + token }
+    }).done(function(emp) {
+      $("#profile").html(`
+        <p>Name: ${emp.name}</p>
+        <p>Email: ${emp.email}</p>
+        <p>Designation: ${emp.designation}</p>
+        <p>Salary: ${emp.baseSalary}</p>
+      `);
+    });
+
+    function logout() {
+      localStorage.removeItem("token");
+      window.location = "index.html";
+    }
+  </script>
+</body>
+</html>

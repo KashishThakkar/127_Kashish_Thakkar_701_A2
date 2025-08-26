@@ -1,0 +1,18 @@
+<h1>Admin</h1>
+<h2>Categories</h2>
+<a href="/admin/add-category">Add Category</a>
+<table border="1" cellpadding="5">
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Created At</th>
+    </tr>
+    <% categories.forEach(c => { %>
+        <tr>
+            <td><%= c.name %></td>
+            <td><%= c.description %></td>
+            <td><%= c.createdAt.toDateString() %></td>
+        </tr>
+    <% }) %>
+</table>
+<a href="/admin/products">Go to Products</a>

@@ -1,0 +1,22 @@
+<h1>Admin</h1>
+<h2>Products</h2>
+<a href="/admin/add-product">Add Product</a>
+<table border="1" cellpadding="5">
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Category</th>
+        <th>Created At</th>
+    </tr>
+    <% products.forEach(p => { %>
+        <tr>
+            <td><%= p.name %></td>
+            <td><%= p.price %></td>
+            <td><%= p.stock %></td>
+            <td><%= p.category.name %></td>
+            <td><%= p.createdAt.toDateString() %></td>
+        </tr>
+    <% }) %>
+</table>
+<a href="/admin/categories">Go to Categories</a>

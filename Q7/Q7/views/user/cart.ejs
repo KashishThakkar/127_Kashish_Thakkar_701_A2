@@ -1,0 +1,18 @@
+<h1>Welcome User</h1>
+<h2>Your Cart</h2>
+<table border="1" cellpadding="5">
+    <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+    </tr>
+    <% cart.items.forEach(i => { %>
+        <tr>
+            <td><%= i.product.name %></td>
+            <td><%= i.quantity %></td>
+            <td>$<%= i.product.price * i.quantity %></td>
+        </tr>
+    <% }) %>
+</table>
+<h3>Total: $<%= cart.totalPrice %></h3>
+<a href="/">Continue Shopping</a>

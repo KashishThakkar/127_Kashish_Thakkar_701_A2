@@ -1,0 +1,19 @@
+<h1>Admin</h1>
+<h2>Add Product</h2>
+<form method="POST">
+    Name: <input type="text" name="name" /><br><br>
+    Price: <input type="text" name="price" /><br><br>
+    Stock: <input type="text" name="stock" /><br><br>
+    Category:
+    <select name="category">
+        <% categories.forEach(c => { %>
+            <option value="<%= c._id %>"><%= c.name %></option>
+        <% }) %>
+    </select><br><br>
+    <button type="submit">Save</button>
+</form>
+
+<% errors.forEach(e => { %>
+    <p style="color:red;"><%= e.msg %></p>
+<% }) %>
+<a href="/admin/products">Back to Products</a>

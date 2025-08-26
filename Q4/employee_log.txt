@@ -1,0 +1,12 @@
+[2025-08-23T13:54:30.131Z] Employee Created: 
+      Name: Kashish, 
+      Email: thakkarkashish586@gmail.com, 
+      EmpID: EMP451745, 
+      TempPassword: 00uvsabf
+
+[2025-08-26T10:52:06.772Z] Employee Created: 
+      Name: Bhumi, 
+      Email: bhumi12@gmail.com, 
+      EmpID: EMP260818, 
+      TempPassword: lku084uf
+

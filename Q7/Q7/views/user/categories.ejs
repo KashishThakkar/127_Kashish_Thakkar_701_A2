@@ -1,0 +1,18 @@
+<h1>Welcome User</h1>
+
+<h2>Categories</h2>
+<table border="1" cellpadding="5">
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Action</th>
+    </tr>
+    <% categories.forEach(c => { %>
+        <tr>
+            <td><%= c.name %></td>
+            <td><%= c.description %></td>
+            <td><a href="/products/<%= c._id %>">View Products</a></td>
+        </tr>
+    <% }) %>
+</table>
+<a href="/cart">View Cart</a>

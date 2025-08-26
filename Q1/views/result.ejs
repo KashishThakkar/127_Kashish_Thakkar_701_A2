@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Submitted Data</title>
+</head>
+<body>
+    <h2>Submitted User Data</h2>
+    <table border="1" cellpadding="10" width="500" height="500">
+        <tr><th>Username</th><td><%= data.username %></td></tr>
+        <tr><th>Email</th><td><%= data.email %></td></tr>
+        <tr><th>Gender</th><td><%= data.gender %></td></tr>
+        <tr><th>Hobbies</th><td><%= (data.hobbies || []).join(', ') %></td></tr>
+        <tr><th>Profile Pic</th>
+            <td><img src="/uploads/<%= profilePic %>" width="300"></td>
+        </tr>
+        <tr><th>Other Pics</th>
+            <td>
+                <% otherPics.forEach(function(pic) { %>
+                    <img src="/uploads/<%= pic %>" width="300" style="margin:5px;">
+                <% }); %>
+            </td>
+        </tr>
+    </table>
+
+    <br>
+    <a href="/download">Download Result as File</a>
+</body>
+</html>
